@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>REHAN JOSE</title>
+
+    <!-- External Dependencies -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+    <!-- Preloader with Skip Button -->
+    <div id="preloader" class="preloader">
+        <button id="skip-button" class="skip-button">Skip Intro</button>
+    </div>
+
+    <!-- Main Content -->
+    <div id="main-content">
+        <!-- Navigation -->
+        <div class="fixed top-6 left-0 w-full flex justify-center z-50 px-4">
+            <nav
+                class="bg-zinc-900/90 backdrop-blur-md border border-zinc-800 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl">
+                <div class="flex items-center justify-between">
+                    <div class="flex items-center">
+                        <img src="images/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo">
+                    </div>
+
+                    <div class="hidden md:flex items-center gap-6">
+                        <a href="#home"
+                            class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Home</a>
+                        <a href="#about"
+                            class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">About</a>
+                        <a href="#projects"
+                            class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Projects</a>
+                        <a href="#contact"
+                            class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Contact</a>
+                    </div>
+
+                    <div class="flex items-center gap-4">
+                        <a href="#"
+                            class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase hover:text-zinc-300 transition-colors">
+                            <span>Resume</span>
+                            <i data-lucide="download" class="w-4 h-4"></i>
+                        </a>
+                        <button id="mobile-menu-toggle" class="md:hidden text-white"><i data-lucide="menu"
+                                class="w-5 h-5"></i></button>
+                    </div>
+                </div>
+            </nav>
+        </div>
+
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu" class="mobile-menu">
+            <div class="mobile-menu-content">
+                <button id="mobile-menu-close" class="mobile-menu-close">
+                    <i data-lucide="x" class="w-6 h-6"></i>
+                </button>
+                <nav class="mobile-nav">
+                    <a href="#home" class="mobile-nav-link">Home</a>
+                    <a href="#about" class="mobile-nav-link">About</a>
+                    <a href="#projects" class="mobile-nav-link">Projects</a>
+                    <a href="#contact" class="mobile-nav-link">Contact</a>
+                    <a href="#" class="mobile-nav-link mobile-nav-resume">
+                        <span>Resume</span>
+                        <i data-lucide="download" class="w-5 h-5"></i>
+                    </a>
+                </nav>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JavaScript -->
+    <script src="script.js"></script>
+</body>
+
+</html>
