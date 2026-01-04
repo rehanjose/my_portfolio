@@ -3,8 +3,8 @@ body {
     font-family: 'Space Mono', monospace;
     background-color: #000000;
     color: #ffffff;
-    overflow: hidden;
-    /* Locked during intro */
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 
 /* --- PRELOADER ANIMATION CSS (Speed Up Version) --- */
@@ -238,4 +238,358 @@ body {
 #main-content.visible {
     opacity: 1;
     transform: translateY(0);
+}
+
+/* ============================================
+   HERO SECTION - EXACT REFERENCE REPLICA
+   ============================================ */
+
+.hero-section {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 10rem 2rem 4rem;
+    position: relative;
+}
+
+.hero-container {
+    position: relative;
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 600px;
+    padding: 0 4rem;
+}
+
+/* Top Left: Malayalam Welcome */
+.hero-welcome-left {
+    position: absolute;
+    top: 50px;
+    left: 50px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.malayalam-text {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.25rem 0;
+    letter-spacing: 0.05em;
+    transform: translateY(-3px);
+}
+
+.welcome-subtitle {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.75rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-style: italic;
+    transform: translateY(-11px);
+}
+
+/* Bottom Left: Skills */
+.hero-skills-left {
+    position: absolute;
+    bottom: calc(50% - clamp(175px, 14vw, 225px) + 11px);
+    left: 62px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hero-skills-left p {
+    font-family: 'Space Mono', monospace;
+    font-size: 1rem;
+    line-height: 1.8;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 400;
+}
+
+.hero-skills-left p:last-child {
+    margin-bottom: 0;
+}
+
+/* Center: Profile Image with Caption */
+.hero-image {
+    position: relative;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.photo-wrapper {
+    position: relative;
+    width: clamp(350px, 28vw, 450px);
+    height: clamp(350px, 28vw, 450px);
+}
+
+.hero-image .profile-photo {
+    width: clamp(350px, 28vw, 450px);
+    height: clamp(350px, 28vw, 450px);
+    object-fit: cover;
+    border-radius: 20px;
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+.hero-image .profile-photo.grayscale {
+    z-index: 1;
+}
+
+.hero-image .profile-photo.colorful {
+    z-index: 2;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+.photo-wrapper:hover .profile-photo.colorful {
+    opacity: 1;
+}
+
+.photo-caption {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin: 0;
+    font-style: italic;
+    text-align: center;
+}
+
+/* Wave Emoji Overlay */
+.wave-emoji {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    font-size: clamp(8rem, 15vw, 12rem);
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.wave-emoji.active {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+    animation: wave-hand 0.6s ease-in-out 0.3s;
+}
+
+@keyframes wave-hand {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1) rotate(0deg);
+    }
+
+    20%,
+    60% {
+        transform: translate(-50%, -50%) scale(1) rotate(8deg);
+    }
+
+    40%,
+    80% {
+        transform: translate(-50%, -50%) scale(1) rotate(-8deg);
+    }
+}
+
+
+/* Top Right: Quote */
+.hero-quote-right {
+    position: absolute;
+    top: 50px;
+    right: 50px;
+    max-width: 280px;
+    text-align: right;
+}
+
+.hero-quote-right p {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #ffffff;
+    margin: 0;
+    font-weight: 400;
+}
+
+/* Bottom Right: HUGE Name that OVERLAPS image */
+.hero-name-right {
+    position: absolute;
+    bottom: calc(50% - clamp(175px, 14vw, 225px) + 12px);
+    right: 52px;
+    z-index: 10;
+    text-align: right;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.hero-name-right h1 {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-weight: 700;
+    line-height: 0.85;
+    color: #ffffff;
+    margin: 0;
+    letter-spacing: -0.05em;
+}
+
+.hero-name-right h1 br {
+    display: block;
+    content: "";
+    margin: 0;
+}
+
+/* Swipe Down Indicator */
+.swipe-indicator {
+    position: absolute;
+    bottom: 3rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    animation: float-vertical 2s ease-in-out infinite;
+}
+
+.swipe-line {
+    width: 1px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.swipe-indicator i {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.scroll-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    font-weight: 400;
+    color: rgba(255, 255, 255, 0.5);
+    letter-spacing: 0.15em;
+    margin-top: 0.25rem;
+}
+
+@keyframes float-vertical {
+
+    0%,
+    100% {
+        transform: translateX(-50%) translateY(0);
+    }
+
+    50% {
+        transform: translateX(-50%) translateY(10px);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    .hero-name-right h1 {
+        font-size: clamp(2.2rem, 6vw, 5rem);
+    }
+
+    .photo-wrapper,
+    .hero-image .profile-photo {
+        width: clamp(300px, 25vw, 380px);
+        height: clamp(300px, 25vw, 380px);
+    }
+}
+
+@media (max-width: 1024px) {
+    .hero-container {
+        flex-direction: column;
+        min-height: auto;
+        gap: 3rem;
+    }
+
+    .hero-welcome-left,
+    .hero-skills-left,
+    .hero-image,
+    .hero-quote-right,
+    .hero-name-right {
+        position: static;
+    }
+
+    .hero-welcome-left {
+        order: 1;
+        text-align: center;
+    }
+
+    .hero-image {
+        order: 2;
+    }
+
+    .photo-wrapper,
+    .hero-image .profile-photo {
+        width: 320px;
+        height: 320px;
+    }
+
+    .hero-skills-left {
+        order: 3;
+        text-align: center;
+    }
+
+    .hero-quote-right {
+        order: 4;
+        text-align: center;
+        max-width: 100%;
+    }
+
+    .hero-name-right {
+        order: 5;
+        text-align: center;
+    }
+
+    .hero-name-right h1 {
+        font-size: clamp(2.2rem, 10vw, 4.5rem);
+    }
+}
+
+@media (max-width: 640px) {
+    .hero-section {
+        padding: 6rem 1.5rem 4rem;
+    }
+
+    .photo-wrapper,
+    .hero-image .profile-photo {
+        width: 280px;
+        height: 280px;
+    }
+
+    .hero-quote-right p {
+        font-size: 0.8rem;
+    }
+
+    .hero-name-right h1 {
+        font-size: clamp(2rem, 12vw, 3.5rem);
+    }
+
+    .hero-skills-left p {
+        font-size: 0.875rem;
+    }
+
+    .malayalam-text {
+        font-size: clamp(1.5rem, 8vw, 2rem);
+    }
+
+    .swipe-indicator {
+        bottom: 2rem;
+    }
 }

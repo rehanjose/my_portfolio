@@ -122,3 +122,26 @@ mobileMenu.addEventListener('click', (e) => {
         closeMobileMenu();
     }
 });
+
+// Photo Click - Wave Emoji Animation
+const photoWrapper = document.querySelector('.photo-wrapper');
+const waveEmoji = document.querySelector('.wave-emoji');
+
+if (photoWrapper && waveEmoji) {
+    photoWrapper.addEventListener('click', () => {
+        // Reset animation if already active
+        waveEmoji.classList.remove('active');
+
+        // Trigger reflow to restart animation
+        void waveEmoji.offsetWidth;
+
+        // Add active class to trigger animation
+        waveEmoji.classList.add('active');
+
+        // Remove active class after animation completes
+        setTimeout(() => {
+            waveEmoji.classList.remove('active');
+        }, 1200); // 300ms scale + 600ms wave + 300ms buffer
+    });
+}
+
