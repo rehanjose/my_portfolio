@@ -20,7 +20,7 @@ body {
 }
 
 .loader-text {
-    font-size: clamp(2rem, 5vw, 4rem);
+    font-size: clamp(32px, 5vw, 64px);
     font-weight: 700;
     opacity: 0;
     transform: translateY(100%);
@@ -65,15 +65,15 @@ body {
 /* Skip Button Styles */
 .skip-button {
     position: fixed;
-    bottom: 3.5rem;
+    bottom: 56px;
     left: 50%;
     transform: translateX(-50%);
     z-index: 10000;
-    padding: 0.5rem 1rem;
+    padding: 8px 16px;
     background: rgba(255, 255, 255, 0.05);
     border: 1px solid rgba(255, 255, 255, 0.1);
     color: rgba(255, 255, 255, 0.7);
-    font-size: 0.7rem;
+    font-size: 11.2px;
     font-weight: 500;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -99,21 +99,37 @@ body {
 /* RESPONSIVE ADJUSTMENTS FOR MOBILE */
 @media (max-width: 768px) {
     .skip-button {
-        bottom: 2rem;
-        font-size: 0.65rem;
-        padding: 0.4rem 0.8rem;
+        bottom: 32px;
+        font-size: 10.4px;
+        padding: 6.4px 12.8px;
     }
 
     .loader-text {
-        font-size: clamp(1.5rem, 8vw, 3rem);
-        padding: 0 1rem;
+        font-size: clamp(24px, 8vw, 48px);
+        padding: 0 16px;
         text-align: center;
     }
 }
 
 /* NAVIGATION LOGO SPACING */
 .nav-logo {
-    margin-left: 0.5rem;
+    margin-left: 8px;
+}
+
+/* NAVBAR AUTO-HIDE ANIMATION */
+#navbar-container {
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.5s ease;
+}
+
+#navbar-container.navbar-visible {
+    transform: translateY(0);
+    opacity: 1;
+}
+
+#navbar-container.navbar-hidden {
+    transform: translateY(-120px);
+    opacity: 0;
+    pointer-events: none;
 }
 
 /* MOBILE MENU STYLES */
@@ -141,18 +157,18 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 2rem;
+    padding: 32px;
 }
 
 .mobile-menu-close {
     position: absolute;
-    top: 2rem;
-    right: 2rem;
+    top: 32px;
+    right: 32px;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.2);
     color: white;
-    width: 3rem;
-    height: 3rem;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -170,12 +186,12 @@ body {
 .mobile-nav {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 32px;
     align-items: center;
 }
 
 .mobile-nav-link {
-    font-size: 1.5rem;
+    font-size: 24px;
     font-weight: 700;
     text-transform: uppercase;
     letter-spacing: 0.1em;
@@ -193,10 +209,10 @@ body {
 .mobile-nav-link::before {
     content: '';
     position: absolute;
-    left: -1.5rem;
+    left: -24px;
     top: 50%;
     transform: translateY(-50%) scaleX(0);
-    width: 1rem;
+    width: 16px;
     height: 2px;
     background: #ffffff;
     transition: transform 0.3s ease;
@@ -209,9 +225,9 @@ body {
 .mobile-nav-resume {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    margin-top: 1rem;
-    padding: 0.75rem 1.5rem;
+    gap: 8px;
+    margin-top: 16px;
+    padding: 12px 24px;
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 9999px;
 }
@@ -250,9 +266,30 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 10rem 2rem 4rem;
+    padding: 160px 32px 64px;
     position: relative;
+    overflow-x: hidden;
+    /* Prevent horizontal scroll from animated elements */
 }
+
+/* Background image with controlled opacity - TEMPORARILY DISABLED */
+/*
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: url('netbackdrop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+}
+*/
 
 .hero-container {
     position: relative;
@@ -263,7 +300,7 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 600px;
-    padding: 0 4rem;
+    padding: 0 64px;
 }
 
 /* Top Left: Malayalam Welcome */
@@ -275,21 +312,22 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    will-change: transform, opacity;
 }
 
 .malayalam-text {
     font-family: 'Space Mono', monospace;
-    font-size: clamp(1.8rem, 4vw, 3rem);
+    font-size: clamp(28.8px, 4vw, 48px);
     font-weight: 700;
     color: #ffffff;
-    margin: 0 0 0.25rem 0;
+    margin: 0 0 4px 0;
     letter-spacing: 0.05em;
     transform: translateY(-3px);
 }
 
 .welcome-subtitle {
     font-family: 'Space Mono', monospace;
-    font-size: 0.75rem;
+    font-size: 12px;
     color: rgba(255, 255, 255, 0.6);
     margin: 0;
     font-style: italic;
@@ -305,11 +343,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
+    will-change: transform, opacity;
 }
 
 .hero-skills-left p {
     font-family: 'Space Mono', monospace;
-    font-size: 1rem;
+    font-size: 16px;
     line-height: 1.8;
     color: #ffffff;
     margin: 0;
@@ -327,7 +366,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.75rem;
+    gap: 12px;
+    will-change: transform, opacity;
 }
 
 .photo-wrapper {
@@ -363,49 +403,15 @@ body {
 
 .photo-caption {
     font-family: 'Space Mono', monospace;
-    font-size: 0.875rem;
+    font-size: 14px;
     color: rgba(255, 255, 255, 0.7);
     margin: 0;
     font-style: italic;
     text-align: center;
 }
 
-/* Wave Emoji Overlay */
-.wave-emoji {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%) scale(0);
-    font-size: clamp(8rem, 15vw, 12rem);
-    z-index: 100;
-    pointer-events: none;
-    opacity: 0;
-    transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
+/* Wave Emoji Overlay (REMOVED) */
 
-.wave-emoji.active {
-    opacity: 1;
-    transform: translate(-50%, -50%) scale(1);
-    animation: wave-hand 0.6s ease-in-out 0.3s;
-}
-
-@keyframes wave-hand {
-
-    0%,
-    100% {
-        transform: translate(-50%, -50%) scale(1) rotate(0deg);
-    }
-
-    20%,
-    60% {
-        transform: translate(-50%, -50%) scale(1) rotate(8deg);
-    }
-
-    40%,
-    80% {
-        transform: translate(-50%, -50%) scale(1) rotate(-8deg);
-    }
-}
 
 
 /* Top Right: Quote */
@@ -415,11 +421,12 @@ body {
     right: 50px;
     max-width: 280px;
     text-align: right;
+    will-change: transform, opacity;
 }
 
 .hero-quote-right p {
     font-family: 'Space Mono', monospace;
-    font-size: 0.9rem;
+    font-size: 14.4px;
     line-height: 1.6;
     color: #ffffff;
     margin: 0;
@@ -436,11 +443,12 @@ body {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+    will-change: transform, opacity;
 }
 
 .hero-name-right h1 {
     font-family: 'Space Mono', monospace;
-    font-size: clamp(2.5rem, 6vw, 5.5rem);
+    font-size: clamp(40px, 6vw, 88px);
     font-weight: 700;
     line-height: 0.85;
     color: #ffffff;
@@ -457,13 +465,13 @@ body {
 /* Swipe Down Indicator */
 .swipe-indicator {
     position: absolute;
-    bottom: 3rem;
+    bottom: 48px;
     left: 50%;
     transform: translateX(-50%);
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 0.5rem;
+    gap: 8px;
     animation: float-vertical 2s ease-in-out infinite;
 }
 
@@ -483,7 +491,7 @@ body {
     font-weight: 400;
     color: rgba(255, 255, 255, 0.5);
     letter-spacing: 0.15em;
-    margin-top: 0.25rem;
+    margin-top: 4px;
 }
 
 @keyframes float-vertical {
@@ -501,7 +509,7 @@ body {
 /* Responsive Design */
 @media (max-width: 1200px) {
     .hero-name-right h1 {
-        font-size: clamp(2.2rem, 6vw, 5rem);
+        font-size: clamp(35.2px, 6vw, 80px);
     }
 
     .photo-wrapper,
@@ -515,7 +523,7 @@ body {
     .hero-container {
         flex-direction: column;
         min-height: auto;
-        gap: 3rem;
+        gap: 48px;
     }
 
     .hero-welcome-left,
@@ -558,13 +566,13 @@ body {
     }
 
     .hero-name-right h1 {
-        font-size: clamp(2.2rem, 10vw, 4.5rem);
+        font-size: clamp(35.2px, 10vw, 72px);
     }
 }
 
 @media (max-width: 640px) {
     .hero-section {
-        padding: 6rem 1.5rem 4rem;
+        padding: 96px 24px 64px;
     }
 
     .photo-wrapper,
@@ -574,11 +582,11 @@ body {
     }
 
     .hero-quote-right p {
-        font-size: 0.8rem;
+        font-size: 12.8px;
     }
 
     .hero-name-right h1 {
-        font-size: clamp(2rem, 12vw, 3.5rem);
+        font-size: clamp(32px, 12vw, 56px);
     }
 
     .hero-skills-left p {
@@ -591,5 +599,110 @@ body {
 
     .swipe-indicator {
         bottom: 2rem;
+    }
+}
+
+/* ============================================
+   ABOUT SECTION
+   ============================================ */
+
+.about-section {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 96px 32px;
+    position: relative;
+    /* overflow: hidden; */
+    /* Temporarily disabled for backdrop removal */
+}
+
+/* Background image with controlled opacity - TEMPORARILY DISABLED */
+/*
+.about-section::before {
+    content: '';
+    position: absolute;
+    top: -10%;
+    left: -10%;
+    width: 120%;
+    height: 120%;
+    background-image: url('netbackdrop.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0.08;
+    z-index: 0;
+    pointer-events: none;
+}
+*/
+
+.about-container {
+    position: relative;
+    max-width: 900px;
+    width: 100%;
+    margin: 0 auto;
+    z-index: 1;
+    text-align: center;
+}
+
+.about-text {
+    font-family: 'Space Mono', monospace;
+    font-size: clamp(20px, 3vw, 28px);
+    line-height: 1.6;
+    color: #ffffff;
+    text-align: center;
+    margin: 0 0 32px 0;
+    font-weight: 400;
+}
+
+.know-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.875rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-decoration: none;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;
+    border-radius: 4px;
+    position: relative;
+}
+
+.know-more-link:hover {
+    color: #ffffff;
+    transform: translateX(5px);
+}
+
+.know-more-link .arrow-icon {
+    width: 16px;
+    height: 16px;
+    transition: transform 0.3s ease;
+}
+
+.know-more-link:hover .arrow-icon {
+    transform: translateX(5px);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .about-section {
+        min-height: 40vh;
+        padding: 64px 24px;
+    }
+
+    .about-text {
+        font-size: clamp(16px, 4vw, 20px);
+        line-height: 1.7;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-section {
+        padding: 48px 16px;
+    }
+
+    .about-text {
+        font-size: 16px;
     }
 }

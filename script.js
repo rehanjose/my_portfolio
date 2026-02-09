@@ -7,7 +7,7 @@ const mainContent = document.getElementById('main-content');
 const skipButton = document.getElementById('skip-button');
 
 const lines = [
-    "It's Rehan.",
+    "I'm Rehan.",
     "It's <span style='color: #ef4444'>not</span> Rehaaaaaaaaan.",
     "It's Rehan."
 ];
@@ -123,25 +123,103 @@ mobileMenu.addEventListener('click', (e) => {
     }
 });
 
-// Photo Click - Wave Emoji Animation
-const photoWrapper = document.querySelector('.photo-wrapper');
-const waveEmoji = document.querySelector('.wave-emoji');
+// Photo Click - Wave Emoji Animation (REMOVED)
 
-if (photoWrapper && waveEmoji) {
-    photoWrapper.addEventListener('click', () => {
-        // Reset animation if already active
-        waveEmoji.classList.remove('active');
+// --- AUTO-HIDE NAVBAR ON SCROLL ---
+let lastScrollTop = 0;
+let scrollTimeout;
+const navbar = document.getElementById('navbar-container');
 
-        // Trigger reflow to restart animation
-        void waveEmoji.offsetWidth;
+window.addEventListener('scroll', () => {
+    // Clear the timeout to debounce the scroll event
+    clearTimeout(scrollTimeout);
 
-        // Add active class to trigger animation
-        waveEmoji.classList.add('active');
+    scrollTimeout = setTimeout(() => {
+        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
 
-        // Remove active class after animation completes
-        setTimeout(() => {
-            waveEmoji.classList.remove('active');
-        }, 1200); // 300ms scale + 600ms wave + 300ms buffer
-    });
+        // Don't hide navbar if we're at the very top of the page
+        if (currentScroll <= 100) {
+            navbar.classList.remove('navbar-hidden');
+            navbar.classList.add('navbar-visible');
+        }
+        // Scrolling down - hide navbar
+        else if (currentScroll > lastScrollTop) {
+            navbar.classList.remove('navbar-visible');
+            navbar.classList.add('navbar-hidden');
+        }
+        // Scrolling up - show navbar
+        else {
+            navbar.classList.remove('navbar-hidden');
+            navbar.classList.add('navbar-visible');
+        }
+
+        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
+    }, 10); // Small delay for smooth performance
+});
+
+// --- HERO SECTION SCROLL ANIMATIONS ---
+const heroSection = document.querySelector('.hero-section');
+const heroWelcomeLeft = document.querySelector('.hero-welcome-left');
+const heroSkillsLeft = document.querySelector('.hero-skills-left');
+const heroQuoteRight = document.querySelector('.hero-quote-right');
+const heroNameRight = document.querySelector('.hero-name-right');
+const heroImage = document.querySelector('.hero-image');
+
+function updateHeroAnimations() {
+    if (!heroSection) return;
+
+    const scrollPosition = window.pageYOffset;
+    const heroHeight = heroSection.offsetHeight;
+
+    // Calculate progress (0 to 1) based on how much of hero section is scrolled
+    // Start animating when we start scrolling, complete by the time we're halfway through hero section
+    const progress = Math.min(scrollPosition / (heroHeight * 0.5), 1);
+
+    // Calculate movement distances (in pixels)
+    const moveDistance = progress * 300; // Move up to 300px
+    const opacity = 1 - progress; // Fade out as we scroll
+
+    // Left side elements - move left and fade out
+    if (heroWelcomeLeft) {
+        heroWelcomeLeft.style.transform = `translateX(-${moveDistance}px)`;
+        heroWelcomeLeft.style.opacity = opacity;
+    }
+
+    if (heroSkillsLeft) {
+        heroSkillsLeft.style.transform = `translateX(-${moveDistance}px)`;
+        heroSkillsLeft.style.opacity = opacity;
+    }
+
+    // Right side elements - move right and fade out
+    if (heroQuoteRight) {
+        heroQuoteRight.style.transform = `translateX(${moveDistance}px)`;
+        heroQuoteRight.style.opacity = opacity;
+    }
+
+    if (heroNameRight) {
+        heroNameRight.style.transform = `translateX(${moveDistance}px)`;
+        heroNameRight.style.opacity = opacity;
+    }
+
+    // Center image - move up and fade out
+    if (heroImage) {
+        const imageMove = progress * 200; // Move up by 200px
+        const imageOpacity = 1 - (progress * 0.5); // Fade to 50% opacity
+        heroImage.style.transform = `translateY(-${imageMove}px)`;
+        heroImage.style.opacity = imageOpacity;
+    }
 }
 
+// Run on scroll with requestAnimationFrame for smooth performance
+let rafId = null;
+window.addEventListener('scroll', () => {
+    if (rafId) return;
+
+    rafId = requestAnimationFrame(() => {
+        updateHeroAnimations();
+        rafId = null;
+    });
+});
+
+// Initial call
+updateHeroAnimations();
