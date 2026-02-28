@@ -1,4 +1,4 @@
-// Initialize Lucide icons
+//Initialize Lucide icons
 lucide.createIcons();
 
 // --- PRELOADER LOGIC ---
@@ -125,37 +125,48 @@ mobileMenu.addEventListener('click', (e) => {
 
 // Photo Click - Wave Emoji Animation (REMOVED)
 
-// --- AUTO-HIDE NAVBAR ON SCROLL ---
-let lastScrollTop = 0;
+// --- SCROLL-BASED ACTIVE SECTION HIGHLIGHTING ---
+const navLinks = document.querySelectorAll('.nav-link');
+const sections = document.querySelectorAll('section[id]');
+
+function updateActiveNavLink() {
+    const scrollPosition = window.pageYOffset || document.documentElement.scrollTop;
+
+    // Find which section is currently in view
+    let currentSection = '';
+
+    sections.forEach(section => {
+        const sectionTop = section.offsetTop - 200; // Offset for navbar height
+        const sectionHeight = section.offsetHeight;
+
+        if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
+            currentSection = section.getAttribute('id');
+        }
+    });
+
+    // If we're at the very top, highlight home
+    if (scrollPosition < 100) {
+        currentSection = 'home';
+    }
+
+    // Update active class on nav links
+    navLinks.forEach(link => {
+        link.classList.remove('active');
+        if (link.getAttribute('data-section') === currentSection) {
+            link.classList.add('active');
+        }
+    });
+}
+
+// Run on scroll with debouncing
 let scrollTimeout;
-const navbar = document.getElementById('navbar-container');
-
 window.addEventListener('scroll', () => {
-    // Clear the timeout to debounce the scroll event
     clearTimeout(scrollTimeout);
-
-    scrollTimeout = setTimeout(() => {
-        const currentScroll = window.pageYOffset || document.documentElement.scrollTop;
-
-        // Don't hide navbar if we're at the very top of the page
-        if (currentScroll <= 100) {
-            navbar.classList.remove('navbar-hidden');
-            navbar.classList.add('navbar-visible');
-        }
-        // Scrolling down - hide navbar
-        else if (currentScroll > lastScrollTop) {
-            navbar.classList.remove('navbar-visible');
-            navbar.classList.add('navbar-hidden');
-        }
-        // Scrolling up - show navbar
-        else {
-            navbar.classList.remove('navbar-hidden');
-            navbar.classList.add('navbar-visible');
-        }
-
-        lastScrollTop = currentScroll <= 0 ? 0 : currentScroll;
-    }, 10); // Small delay for smooth performance
+    scrollTimeout = setTimeout(updateActiveNavLink, 10);
 });
+
+// Initial call to set the active link on page load
+updateActiveNavLink();
 
 // --- HERO SECTION SCROLL ANIMATIONS ---
 const heroSection = document.querySelector('.hero-section');
@@ -223,3 +234,258 @@ window.addEventListener('scroll', () => {
 
 // Initial call
 updateHeroAnimations();
+
+// --- CATEGORY DROPDOWN & PROJECT FILTERING ---
+const categoryDropdown = document.getElementById('category-select');
+const projectCards = document.querySelectorAll('.project-card');
+
+// Function to filter projects by category
+function filterProjects(selectedCategory) {
+    // Filter and show/hide projects with smooth transition
+    projectCards.forEach(card => {
+        const cardCategory = card.getAttribute('data-category');
+
+        if (cardCategory === selectedCategory) {
+            // Show matching projects
+            card.classList.remove('hidden');
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(20px)';
+
+            setTimeout(() => {
+                card.style.opacity = '1';
+                card.style.transform = 'translateY(0)';
+            }, 50);
+        } else {
+            // Hide non-matching projects
+            card.style.opacity = '0';
+            card.style.transform = 'translateY(-20px)';
+
+            setTimeout(() => {
+                card.classList.add('hidden');
+            }, 400);
+        }
+    });
+}
+
+// Add change handler to dropdown
+if (categoryDropdown) {
+    categoryDropdown.addEventListener('change', (e) => {
+        const category = e.target.value;
+        filterProjects(category);
+    });
+
+    // Initialize with first category (product-design)
+    filterProjects('product-design');
+}
+
+// --- ABOUT SECTION SCROLL ANIMATION & PROJECTS TRANSITION ---
+const aboutSection = document.getElementById('about');
+const aboutContainer = document.querySelector('.about-container');
+const aboutText = document.getElementById('about-text');
+const aboutLink = document.getElementById('about-link');
+const projectsTitle = document.querySelector('.projects-title');
+
+// Pre-define random scattering values for consistent animation
+const letterPhysics = [];
+
+if (aboutText && aboutSection && aboutContainer) {
+    // 1. Split text into individual letters wrapped in spans, grouped by word
+    const textContent = aboutText.innerText;
+    const words = textContent.trim().split(/\s+/);
+
+    aboutText.innerHTML = '';
+    words.forEach((word) => {
+        const wordSpan = document.createElement('span');
+        wordSpan.className = 'about-word';
+
+        for (let i = 0; i < word.length; i++) {
+            const letterSpan = document.createElement('span');
+            letterSpan.className = 'about-letter';
+            letterSpan.innerHTML = word[i];
+            wordSpan.appendChild(letterSpan);
+
+            // Generate random physics for the "pop out / scramble" effect
+            letterPhysics.push({
+                x: (Math.random() - 0.5) * 200, // random X spread (-100vw to 100vw later)
+                y: (Math.random() - 0.5) * 200, // random Y spread
+                z: Math.random() * 500 + 100,   // random Z depth
+                rotateX: (Math.random() - 0.5) * 720,
+                rotateY: (Math.random() - 0.5) * 720,
+                rotateZ: (Math.random() - 0.5) * 720,
+                scale: Math.random() * 3 + 1
+            });
+        }
+
+        aboutText.appendChild(wordSpan);
+        aboutText.appendChild(document.createTextNode(' '));
+    });
+
+    const letterElements = document.querySelectorAll('.about-letter');
+
+    // 2. Scroll listener for highlighting, scrambling, & projects transition
+    function updateAboutAnimation() {
+        if (!aboutSection || !aboutContainer) return;
+
+        const scrollPosition = window.pageYOffset;
+        const sectionTop = aboutSection.offsetTop;
+        const sectionHeight = aboutSection.offsetHeight;
+        const viewportHeight = window.innerHeight;
+
+        // If we're past the about section, maintain the hidden scrambled state
+        if (scrollPosition > sectionTop + sectionHeight) {
+            aboutContainer.style.opacity = 0;
+            aboutContainer.style.pointerEvents = 'none';
+        }
+
+        // Only run animation math if we are near or in the about section
+        if (scrollPosition > sectionTop - viewportHeight && scrollPosition <= sectionTop + sectionHeight) {
+
+            const stickyScrollDistance = sectionHeight - viewportHeight;
+            let progress = 0;
+
+            if (stickyScrollDistance > 0) {
+                progress = (scrollPosition - sectionTop) / stickyScrollDistance;
+            } else {
+                progress = 1;
+            }
+
+            progress = Math.max(0, Math.min(1, progress));
+
+            // Phase 1: Reading (0% to 70%)
+            const readingProgress = Math.min(1, progress / 0.7);
+            const lettersToHighlight = Math.ceil(readingProgress * letterElements.length);
+
+            // Phase 2: Scramble & Pop Out (70% to 100%)
+            const scrambleProgress = Math.max(0, (progress - 0.7) / 0.3); // 0 to 1
+
+            // Reveal link right before scrambling starts
+            if (aboutLink) {
+                if (readingProgress > 0.9 && scrambleProgress < 0.2) {
+                    aboutLink.classList.add('visible');
+                } else {
+                    aboutLink.classList.remove('visible');
+                }
+            }
+
+            // Ease the scramble progress using cubic-bezier like curve for explosive start
+            const easedScramble = scrambleProgress === 0 ? 0 : 1 - Math.pow(1 - scrambleProgress, 3);
+
+            // Apply transforms to each letter
+            letterElements.forEach((letter, index) => {
+                // Highlighting Logic
+                if (index < lettersToHighlight && scrambleProgress === 0) {
+                    letter.classList.add('highlighted');
+                } else {
+                    letter.classList.remove('highlighted');
+                }
+
+                // Scrambling Logic
+                if (scrambleProgress > 0) {
+                    const physics = letterPhysics[index];
+
+                    // Multiply physics by eased scramble progress
+                    const tx = physics.x * easedScramble;
+                    const ty = physics.y * easedScramble;
+                    const tz = physics.z * easedScramble;
+                    const rx = physics.rotateX * easedScramble;
+                    const ry = physics.rotateY * easedScramble;
+                    const rz = physics.rotateZ * easedScramble;
+
+                    // Maintain highlighted color during scramble
+                    letter.style.color = 'rgba(255, 255, 255, 1)';
+                    letter.style.textShadow = '0 0 15px rgba(255, 255, 255, 0.4)';
+
+                    // Apply huge 3D transform
+                    letter.style.transform = `
+                        translate3d(${tx}vw, ${ty}vh, ${tz}px) 
+                        rotateX(${rx}deg) 
+                        rotateY(${ry}deg) 
+                        rotateZ(${rz}deg)
+                    `;
+                } else {
+                    // Reset to normal
+                    letter.style.transform = 'translateZ(0)';
+                    letter.style.color = '';
+                    letter.style.textShadow = '';
+                }
+            });
+
+            // Fade out the whole container near the end of the scramble
+            if (scrambleProgress > 0.6) {
+                const fadeOut = 1 - ((scrambleProgress - 0.6) / 0.4);
+                aboutContainer.style.opacity = fadeOut;
+                aboutContainer.style.pointerEvents = 'none';
+            } else {
+                aboutContainer.style.opacity = 1;
+                aboutContainer.style.pointerEvents = 'auto';
+            }
+        }
+
+        // --- PROJECTS TITLE FORMING LOGIC ---
+        // As the About letters scatter into nothingness, the Projects 
+        // title letters fly IN from the scatter to form the word "PROJECTS"
+        if (projectsTitle) {
+            const projectsTop = document.getElementById('projects').offsetTop;
+
+            // Calculate progress specifically for when Projects title enters viewport
+            const titleEnterProgress = (scrollPosition + viewportHeight - projectsTop) / (viewportHeight * 0.5);
+            const clampedTitleProgress = Math.max(0, Math.min(1, titleEnterProgress));
+
+            // If the title hasn't been split into letters yet, do it now
+            if (!projectsTitle.hasAttribute('data-split')) {
+                const titleText = projectsTitle.innerText;
+                projectsTitle.innerHTML = '';
+                for (let i = 0; i < titleText.length; i++) {
+                    const span = document.createElement('span');
+                    span.innerHTML = titleText[i];
+                    span.style.display = 'inline-block';
+                    span.style.willChange = 'transform, opacity, filter';
+
+                    // Assign random coming-in coordinates matching the scatter effect
+                    span.setAttribute('data-ix', (Math.random() - 0.5) * 100);
+                    span.setAttribute('data-iy', (Math.random() - 0.5) * 100 - 50); // coming from slightly above
+                    span.setAttribute('data-irz', (Math.random() - 0.5) * 360);
+
+                    projectsTitle.appendChild(span);
+                }
+                projectsTitle.setAttribute('data-split', 'true');
+            }
+
+            // Animate title letters forming
+            const titleLetters = projectsTitle.querySelectorAll('span');
+            titleLetters.forEach((letter) => {
+                // Ease out back for a snapping effect into place
+                const easeOutBack = (x) => {
+                    const c1 = 1.70158;
+                    const c3 = c1 + 1;
+                    return 1 + c3 * Math.pow(clampedTitleProgress - 1, 3) + c1 * Math.pow(clampedTitleProgress - 1, 2);
+                };
+
+                const eased = clampedTitleProgress === 1 ? 1 : easeOutBack(clampedTitleProgress);
+                const invProgress = 1 - eased;
+
+                const startX = parseFloat(letter.getAttribute('data-ix'));
+                const startY = parseFloat(letter.getAttribute('data-iy'));
+                const startRz = parseFloat(letter.getAttribute('data-irz'));
+
+                letter.style.transform = `
+                    translate3d(${startX * invProgress}vw, ${startY * invProgress}vh, ${200 * invProgress}px)
+                    rotateZ(${startRz * invProgress}deg)
+                    scale(${1 + invProgress * 2})
+                `;
+
+                letter.style.opacity = clampedTitleProgress;
+                letter.style.filter = `blur(${invProgress * 10}px)`;
+            });
+        }
+    }
+
+    // Add to scroll listener
+    window.addEventListener('scroll', () => {
+        requestAnimationFrame(updateAboutAnimation);
+    });
+
+    // Initial call
+    updateAboutAnimation();
+}
+

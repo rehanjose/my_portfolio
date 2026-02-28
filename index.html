@@ -33,14 +33,14 @@
                 </div>
 
                 <div class="hidden md:flex items-center gap-6">
-                    <a href="#home"
-                        class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Home</a>
-                    <a href="#about"
-                        class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">About</a>
-                    <a href="#projects"
-                        class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Projects</a>
-                    <a href="#contact"
-                        class="text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Contact</a>
+                    <a href="#home" data-section="home"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Home</a>
+                    <a href="#about" data-section="about"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">About</a>
+                    <a href="#projects" data-section="projects"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Projects</a>
+                    <a href="#contact" data-section="contact"
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Contact</a>
                 </div>
 
                 <div class="flex items-center gap-4">
@@ -124,14 +124,38 @@
 
         <!-- About Section -->
         <section id="about" class="about-section">
-            <div class="about-container">
-                <h3 class="about-text">A Junior Year Communication Design student from NIFT Kannur, constantly
-                    experimenting, questioning, and figuring things out.</h3>
-                <a href="#" class="know-more-link">
-                    <span>Know more about me</span>
-                    <i data-lucide="arrow-right" class="arrow-icon"></i>
-                </a>
+            <div class="about-overflow-wrapper">
+                <div class="about-container">
+                    <h3 class="about-text" id="about-text">A Junior Year Communication Design student from NIFT Kannur,
+                        constantly experimenting, questioning, and figuring things out.</h3>
+                    <a href="#" class="know-more-link" id="about-link">
+                        <span>Know more about me</span>
+                        <i data-lucide="arrow-right" class="arrow-icon"></i>
+                    </a>
+                </div>
             </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects-section">
+            <!-- Projects Header with Category List -->
+            <div class="projects-header-wrapper">
+                <div class="projects-header-left">
+                    <h2 class="projects-title">PROJECTS</h2>
+                    <p class="projects-subtitle">A curated collection of my work across design disciplines</p>
+                </div>
+
+                <div class="category-dropdown-wrapper">
+                    <label for="category-select" class="category-label">My Design Spectrum</label>
+                    <select id="category-select" class="category-dropdown">
+                        <option value="product-design">Product Design</option>
+                        <option value="ui-ux">UI/UX</option>
+                        <option value="3d">3D</option>
+                    </select>
+                </div>
+            </div>
+
+
         </section>
     </div>
 
