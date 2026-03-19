@@ -1,7 +1,8 @@
 // --- THEME TOGGLE (init before anything else to avoid FOUC) ---
 (function () {
-    const saved = localStorage.getItem('portfolio-theme');
-    if (saved === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    // Temporarily disabled: force dark mode
+    document.documentElement.removeAttribute('data-theme');
+    localStorage.removeItem('portfolio-theme');
 })();
 
 // Initialize Lucide icons
@@ -517,3 +518,34 @@ if (aboutText && aboutSection && aboutContainer) {
     updateAboutAnimation();
 }
 
+
+// --- CONTACT SECTION ANIMATIONS (INTERSECTION OBSERVER) ---
+const contactObserverOptions = {
+    root: null,
+    rootMargin: '0px', // Trigger normally without strict margin to avoid bottom elements getting stuck
+    threshold: 0.1
+};
+
+const contactSectionInfo = document.getElementById('contact');
+const elementsToReveal = document.querySelectorAll('#contact .reveal-up');
+
+// Assign transition delays in advance
+elementsToReveal.forEach((el, index) => {
+    el.style.transitionDelay = `${index * 0.15}s`;
+});
+
+const contactObserver = new IntersectionObserver((entries, observer) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            // Trigger all internal elements when the section enters viewport
+            elementsToReveal.forEach(el => {
+                el.classList.add('is-visible');
+            });
+            observer.unobserve(entry.target);
+        }
+    });
+}, contactObserverOptions);
+
+if (contactSectionInfo) {
+    contactObserver.observe(contactSectionInfo);
+}

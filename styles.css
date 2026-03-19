@@ -1172,12 +1172,20 @@ body {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    padding: 380px 48px 10px;
-    /* Removed bottom padding */
-    /* Increased top padding to push everything down */
+    padding: 140px 48px 40px;
+    /* Adjusted padding so everything fits on a single screen */
     position: relative;
     text-align: center;
     /* Removed gap: 36px because it forces a massive gap between the email and the socials */
+}
+
+/* --- Contact Image --- */
+.contact-image {
+    width: 240px;
+    height: auto;
+    margin-bottom: 20px;
+    object-fit: contain;
+    /* This margin pushes the big heading below it a bit down as requested */
 }
 
 /* --- Headline block: centered, two big lines --- */
@@ -1236,15 +1244,15 @@ body {
     font-size: clamp(14px, 1.6vw, 18px);
     /* slightly bumped up the email size too */
     font-weight: 700;
-    color: var(--text-primary);
+    color: #ef4444;
     text-decoration: none;
     letter-spacing: 0.06em;
     position: relative;
     padding-bottom: 4px;
     display: block;
-    margin-top: 240px;
-    /* Force the email way down the page */
-    margin-bottom: 12px;
+    margin-top: 80px;
+    /* Reduced margin-top so the email and socials stay on screen */
+    margin-bottom: 24px;
     /* Small, tightly controlled gap between email and socials */
     transition: color 0.3s ease;
 }
@@ -1460,4 +1468,54 @@ body {
 
 [data-theme="light"] .projects-subtitle {
     color: var(--text-muted);
+}
+
+/* ============================================
+   FOOTER SECTION
+   ============================================ */
+
+.contact-footer {
+    position: absolute;
+    bottom: 24px;
+    width: 100%;
+    text-align: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 8px;
+    /* Reduced from 10px */
+    font-weight: 700;
+    color: var(--text-muted);
+    letter-spacing: 0.1em;
+    /* Reduced spacing between letters slightly */
+    line-height: 1.8;
+    opacity: 0.6;
+    transition: opacity 0.3s ease;
+}
+
+.contact-footer:hover {
+    opacity: 1;
+}
+
+.contact-footer p {
+    margin: 0;
+}
+
+[data-theme="light"] .contact-footer {
+    color: var(--text-muted);
+}
+
+/* ============================================
+   REVEAL ANIMATIONS
+   ============================================ */
+.reveal-up {
+    opacity: 0;
+    filter: blur(10px);
+    transform: translateY(100px);
+    transition: opacity 1s ease-out, transform 1.2s cubic-bezier(0.34, 1.56, 0.64, 1), filter 1s ease-out;
+    will-change: opacity, transform, filter;
+}
+
+.reveal-up.is-visible {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
 }
