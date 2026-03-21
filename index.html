@@ -27,32 +27,32 @@
     <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 navbar-visible">
 
         <!-- Theme Toggle — floats to the right of the nav pill -->
-        <button id="theme-toggle" class="theme-toggle theme-toggle--floating hidden" aria-label="Toggle light/dark mode">
+        <button id="theme-toggle" class="theme-toggle theme-toggle--floating hidden"
+            aria-label="Toggle light/dark mode">
             <i data-lucide="moon" class="theme-icon theme-icon-moon w-4 h-4"></i>
             <i data-lucide="sun" class="theme-icon theme-icon-sun  w-4 h-4"></i>
         </button>
 
-        <nav
-            class="bg-zinc-900/90 backdrop-blur-md border border-zinc-800 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl">
+        <nav class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <img src="images/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo">
+                    <a href="index.html"><img src="images/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo"></a>
                 </div>
 
                 <div class="hidden md:flex items-center gap-6">
                     <a href="#home" data-section="home"
-                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Home</a>
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
                     <a href="#about" data-section="about"
-                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">About</a>
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
                     <a href="#projects" data-section="projects"
-                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Projects</a>
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
                     <a href="#contact" data-section="contact"
-                        class="nav-link text-xs font-bold uppercase tracking-widest text-zinc-400 hover:text-white transition-colors">Contact</a>
+                        class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
                 </div>
 
                 <div class="flex items-center gap-4">
-                    <a href="Rehan_jose_resume.pdf" target="_blank"
-                        class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase hover:text-zinc-300 transition-colors">
+                    <a href="RehanJoseResume.pdf" target="_blank"
+                        class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">
                         <span>Resume</span>
                         <i data-lucide="download" class="w-4 h-4"></i>
                     </a>
@@ -61,6 +61,7 @@
                 </div>
             </div>
         </nav>
+    </div>
     </div>
 
     <!-- Mobile Menu Overlay (Outside main-content so it's always accessible) -->
@@ -74,7 +75,7 @@
                 <a href="#about" class="mobile-nav-link">About</a>
                 <a href="#projects" class="mobile-nav-link">Projects</a>
                 <a href="#contact" class="mobile-nav-link">Contact</a>
-                <a href="Rehan_jose_resume.pdf" target="_blank" class="mobile-nav-link mobile-nav-resume">
+                <a href="RehanJoseResume.pdf" target="_blank" class="mobile-nav-link mobile-nav-resume">
                     <span>Resume</span>
                     <i data-lucide="download" class="w-5 h-5"></i>
                 </a>
@@ -155,9 +156,7 @@
                 <div class="category-dropdown-wrapper">
                     <label for="category-select" class="category-label">My Design Spectrum</label>
                     <select id="category-select" class="category-dropdown">
-                        <option value="product-design">Product Design</option>
-                        <option value="ui-ux">UI/UX</option>
-                        <option value="3d">3D</option>
+                        <option value="editorial">Editorial / Publication</option>
                     </select>
                 </div>
             </div>
@@ -165,37 +164,22 @@
             <div class="projects-container">
                 <div class="projects-grid">
                     <!-- Project 1 -->
-                    <div class="project-card" data-category="product-design">
+                    <div class="project-card" data-category="editorial" data-glow="255, 255, 255" onclick="window.location.href='beyond-jerseys.html'">
                         <div class="project-image-wrapper">
-                            <div class="project-image-placeholder">Project Image</div>
+                            <img src="images/beyondjerseysthumbnail.jpg" alt="Beyond Jerseys project thumbnail"
+                                class="project-thumbnail">
                         </div>
                         <div class="project-info">
-                            <div class="project-tags mb-4">
-                                <span class="tag">B2C</span>
-                                <span class="tag">Landing Page</span>
+                            <h3 class="project-title">Beyond Jerseys</h3>
+                            <p class="project-description">A visual glossary exploring the culture and aesthetics of
+                                sports fashion.</p>
+                            <div class="project-tags">
+                                <span class="tag">Editorial Design</span>
+                                <span class="tag">Visual Design</span>
                             </div>
-                            <h3 class="project-title">Reducing the returns rate post purchase</h3>
-                            <p class="project-description">A project that provided significant insights into user
-                                perceptions of refurbished items</p>
                         </div>
                     </div>
 
-                    <!-- Project 2 -->
-                    <div class="project-card" data-category="product-design">
-                        <div class="project-image-wrapper">
-                            <div class="project-image-placeholder">Project Image</div>
-                        </div>
-                        <div class="project-info">
-                            <div class="project-tags mb-4">
-                                <span class="tag">B2C</span>
-                                <span class="tag">Loyalty program</span>
-                                <span class="tag">Merchandising</span>
-                            </div>
-                            <h3 class="project-title">Reducing the bounce rate and increasing the repeat visits</h3>
-                            <p class="project-description">An analysis of how I mitigated the bounce rate by creating a
-                                fully new user experience</p>
-                        </div>
-                    </div>
                 </div>
             </div>
 
@@ -225,13 +209,15 @@
 
             <!-- Social Links -->
             <nav class="contact-socials reveal-up" aria-label="Social links">
-                <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank" class="contact-social-link">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/rehan-jose/" target="_blank"
+                    class="contact-social-link">LinkedIn</a>
                 <span class="contact-social-sep">·</span>
                 <a href="https://www.behance.net/rehanjose" target="_blank" class="contact-social-link">Behance</a>
                 <span class="contact-social-sep">·</span>
                 <a href="https://joserehan.wordpress.com/" target="_blank" class="contact-social-link">WordPress</a>
                 <span class="contact-social-sep">·</span>
-                <a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank" class="contact-social-link">Instagram</a>
+                <a href="https://www.instagram.com/rehan_j0se/?hl=en" target="_blank"
+                    class="contact-social-link">Instagram</a>
             </nav>
 
             <!-- Footer Text -->

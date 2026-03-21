@@ -80,8 +80,17 @@ if (skipButton) {
     });
 }
 
-// Start
-runSequence();
+// Start Sequence or Skip if already seen
+if (sessionStorage.getItem('preloaderDone')) {
+    if (preloader) preloader.remove();
+    if (skipButton) skipButton.remove();
+    mainContent.classList.add('visible');
+    document.body.style.overflow = 'auto';
+    animationComplete = true;
+} else {
+    runSequence();
+    sessionStorage.setItem('preloaderDone', 'true');
+}
 
 // Clock
 setInterval(() => {
@@ -302,8 +311,8 @@ if (categoryDropdown) {
         filterProjects(category);
     });
 
-    // Initialize with first category (product-design)
-    filterProjects('product-design');
+    // Initialize with first category (editorial)
+    filterProjects('editorial');
 }
 
 // --- ABOUT SECTION SCROLL ANIMATION & PROJECTS TRANSITION ---
@@ -549,3 +558,63 @@ const contactObserver = new IntersectionObserver((entries, observer) => {
 if (contactSectionInfo) {
     contactObserver.observe(contactSectionInfo);
 }
+
+// --- DYNAMIC COLOR-MATCHED GLOW FOR PROJECT CARDS ---
+function getDominantColor(img) {
+    try {
+        const canvas = document.createElement('canvas');
+        const ctx = canvas.getContext('2d');
+        // Sample a small version for performance
+        canvas.width = 50;
+        canvas.height = 50;
+        ctx.drawImage(img, 0, 0, 50, 50);
+        const data = ctx.getImageData(0, 0, 50, 50).data;
+        let r = 0, g = 0, b = 0, count = 0;
+        // Sample every 4th pixel for speed
+        for (let i = 0; i < data.length; i += 16) {
+            r += data[i];
+            g += data[i + 1];
+            b += data[i + 2];
+            count++;
+        }
+        r = Math.round(r / count);
+        g = Math.round(g / count);
+        b = Math.round(b / count);
+        return `${r}, ${g}, ${b}`;
+    } catch (e) {
+        return null;
+    }
+}
+
+function applyGlowColors() {
+    const cards = document.querySelectorAll('.project-card');
+    cards.forEach(card => {
+        const img = card.querySelector('.project-image-wrapper img');
+        const fallbackColor = card.getAttribute('data-glow');
+
+        const applyColor = (rgb) => {
+            card.style.setProperty('--glow-color', `rgba(${rgb}, 0.7)`);
+        };
+
+        if (img) {
+            if (img.complete && img.naturalWidth > 0) {
+                const rgb = getDominantColor(img);
+                if (rgb) applyColor(rgb);
+                else if (fallbackColor) applyColor(fallbackColor);
+            } else {
+                img.addEventListener('load', () => {
+                    const rgb = getDominantColor(img);
+                    if (rgb) applyColor(rgb);
+                    else if (fallbackColor) applyColor(fallbackColor);
+                });
+                // Fallback while loading
+                if (fallbackColor) applyColor(fallbackColor);
+            }
+        } else if (fallbackColor) {
+            // No image yet (placeholder) — use data-glow attribute color
+            applyColor(fallbackColor);
+        }
+    });
+}
+
+applyGlowColors();
