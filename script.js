@@ -276,8 +276,10 @@ updateHeroAnimations();
 const categoryDropdown = document.getElementById('category-select');
 const projectCards = document.querySelectorAll('.project-card');
 
-// Function to filter projects by category
 function filterProjects(selectedCategory) {
+    // Save selection
+    localStorage.setItem('selectedCategory', selectedCategory);
+
     // Filter and show/hide projects with smooth transition
     projectCards.forEach(card => {
         const cardCategory = card.getAttribute('data-category');
@@ -304,15 +306,19 @@ function filterProjects(selectedCategory) {
     });
 }
 
-// Add change handler to dropdown
 if (categoryDropdown) {
     categoryDropdown.addEventListener('change', (e) => {
         const category = e.target.value;
         filterProjects(category);
     });
 
-    // Initialize with first category (editorial)
-    filterProjects('editorial');
+    // Initialize with saved category (defaulting to editorial)
+    const savedCategory = localStorage.getItem('selectedCategory') || 'editorial';
+    
+    // Sync dropdown value with saved category
+    categoryDropdown.value = savedCategory;
+    
+    filterProjects(savedCategory);
 }
 
 // --- ABOUT SECTION SCROLL ANIMATION & PROJECTS TRANSITION ---

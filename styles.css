@@ -49,7 +49,7 @@ body {
     background-color: var(--bg-color);
     background-image:
         linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        url('netbackdrop.png');
+        url('Homepage%20Assets/netbackdrop.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -1018,6 +1018,54 @@ body {
 
 .project-card:hover .project-image-placeholder {
     background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.04) 100%);
+}
+
+/* 360° Viewer Placeholder */
+.project-image-wrapper--viewer {
+    background: linear-gradient(135deg, rgba(120, 100, 255, 0.08) 0%, rgba(80, 60, 180, 0.04) 100%);
+    border: 1px dashed rgba(120, 100, 255, 0.25);
+}
+
+.viewer-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 16px;
+}
+
+.viewer-icon {
+    font-size: 48px;
+    color: rgba(160, 140, 255, 0.6);
+    animation: spin-slow 4s linear infinite;
+    line-height: 1;
+    user-select: none;
+}
+
+.viewer-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    font-weight: 700;
+    color: rgba(160, 140, 255, 0.8);
+    margin: 0;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+
+.viewer-hint {
+    font-family: 'Space Mono', monospace;
+    font-size: 11px;
+    color: var(--text-muted);
+    margin: 0;
+    font-style: italic;
+}
+
+@keyframes spin-slow {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
 }
 
 .project-thumbnail {
