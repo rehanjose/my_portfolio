@@ -306,6 +306,7 @@ function filterProjects(selectedCategory) {
     });
 }
 
+/* 
 if (categoryDropdown) {
     categoryDropdown.addEventListener('change', (e) => {
         const category = e.target.value;
@@ -320,6 +321,7 @@ if (categoryDropdown) {
     
     filterProjects(savedCategory);
 }
+*/
 
 // --- ABOUT SECTION SCROLL ANIMATION & PROJECTS TRANSITION ---
 const aboutSection = document.getElementById('about');
