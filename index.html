@@ -166,8 +166,40 @@
 
             <div class="projects-container">
                 <div class="projects-grid">
-                    <!-- Project 1 -->
-                    <div class="project-card" data-category="editorial" data-glow="255, 255, 255" onclick="window.location.href='projects/BeyondJerseys/beyond-jerseys.html'">
+                    <!-- Project 1 — Dinely -->
+                    <div class="project-card" data-category="ui-ux" data-glow="140, 140, 140" data-glow-override onclick="showComingSoon()">
+                        <div class="project-image-wrapper">
+                            <img src="projects/Dinely/dinely%20thumbnail.png" alt="Dinely project thumbnail" class="project-thumbnail zoomed">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">Dinely</h3>
+                            <p class="project-description">Helping individuals and groups effortlessly decide where to eat by aligning<br>preferences, dietary needs, and choices.</p>
+                            <div class="project-tags">
+                                <span class="tag">Product Design</span>
+                                <span class="tag">UI/UX</span>
+                                <span class="tag">Case Study</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 2 — AlexaBot -->
+                    <div class="project-card" data-category="3d-spatial" data-glow="255, 255, 255" onclick="window.location.href='projects/AlexaBot/alexabot.html'">
+                        <div class="project-image-wrapper">
+                            <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot — 3D Design" class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">AlexaBot</h3>
+                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with personality.</p>
+                            <div class="project-tags">
+                                <span class="tag">3D Modeling</span>
+                                <span class="tag">Product Design</span>
+                                <span class="tag">Fusion 360</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 — Beyond Jerseys -->
+                    <div class="project-card mt-12" data-category="editorial" data-glow="255, 255, 255" onclick="window.location.href='projects/BeyondJerseys/beyond-jerseys.html'">
                         <div class="project-image-wrapper">
                             <img src="Homepage%20Assets/beyond-jerseys-thumbnail.jpg" alt="Beyond Jerseys project thumbnail"
                                 class="project-thumbnail">
@@ -179,22 +211,6 @@
                             <div class="project-tags">
                                 <span class="tag">Editorial Design</span>
                                 <span class="tag">Visual Design</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Project 2 — 3D & Spatial Design -->
-                    <div class="project-card" data-category="3d-spatial" data-glow="255, 255, 255" onclick="window.location.href='projects/AlexaBot/alexabot.html'">
-                        <div class="project-image-wrapper">
-                            <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot — 3D Design" class="project-thumbnail">
-                        </div>
-                        <div class="project-info">
-                            <h3 class="project-title">AlexaBot</h3>
-                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with personality.</p>
-                            <div class="project-tags">
-                                <span class="tag">Fusion 360</span>
-                                <span class="tag">3D Modeling</span>
-                                <span class="tag">Product Design</span>
                             </div>
                         </div>
                     </div>
@@ -246,6 +262,17 @@
 
         </section>
 
+    </div>
+
+    <!-- Coming Soon Modal -->
+    <div id="coming-soon-modal" class="coming-soon-modal" onclick="closeComingSoon()">
+        <div class="cs-modal-content" onclick="event.stopPropagation()">
+            <h2 class="cs-modal-title">Dinely</h2>
+            <p class="cs-modal-text">
+                Dinely is currently in the wireframing phase — shaping flows, structure, and overall experience. Full case study coming soon.
+            </p>
+            <button class="cs-modal-close-btn" onclick="closeComingSoon()">Got it</button>
+        </div>
     </div>
 
     <!-- Custom JavaScript -->

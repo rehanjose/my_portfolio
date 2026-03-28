@@ -599,10 +599,17 @@ function applyGlowColors() {
     cards.forEach(card => {
         const img = card.querySelector('.project-image-wrapper img');
         const fallbackColor = card.getAttribute('data-glow');
+        const glowOverride = card.hasAttribute('data-glow-override');
 
         const applyColor = (rgb) => {
             card.style.setProperty('--glow-color', `rgba(${rgb}, 0.7)`);
         };
+
+        // If override is set, always use data-glow (skip canvas sampling)
+        if (glowOverride) {
+            if (fallbackColor) applyColor(fallbackColor);
+            return;
+        }
 
         if (img) {
             if (img.complete && img.naturalWidth > 0) {
@@ -625,4 +632,27 @@ function applyGlowColors() {
     });
 }
 
+// --- COMING SOON MODAL ---
+function showComingSoon() {
+    const modal = document.getElementById('coming-soon-modal');
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function closeComingSoon() {
+    const modal = document.getElementById('coming-soon-modal');
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
+// Close on Esc key
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeComingSoon();
+});
+
 applyGlowColors();
+

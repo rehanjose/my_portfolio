@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinely - REHAN JOSE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../styles.css">
+    <style>
+        .project-details-page { width: 100%; background-color: #000; min-height: 100vh; padding-top: 120px; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .placeholder-text { font-family: 'Space Mono', monospace; color: rgba(255,255,255,0.4); text-transform: uppercase; letter-spacing: 0.2em; font-size: 14px; }
+    </style>
+</head>
+<body class="bg-black">
+    <div id="navbar-container" class="fixed top-6 left-0 w-full flex justify-center z-50 px-4 navbar-visible">
+        <nav class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <a href="../../index.html"><img src="../../Homepage%20Assets/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo"></a>
+                </div>
+                <div class="hidden md:flex items-center gap-6">
+                    <a href="../../index.html#home" class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Home</a>
+                    <a href="../../index.html#about" class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">About</a>
+                    <a href="../../index.html#projects" class="nav-link active text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Projects</a>
+                    <a href="../../index.html#contact" class="nav-link text-xs font-bold uppercase tracking-widest text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">Contact</a>
+                </div>
+                <div class="flex items-center gap-4">
+                    <a href="../../RehanJoseResume.pdf" target="_blank" class="hidden sm:flex items-center gap-2 text-xs font-bold uppercase text-white hover:drop-shadow-[0_0_10px_rgba(255,255,255,1)] transition-all duration-300">
+                        <span>Resume</span>
+                        <i data-lucide="download" class="w-4 h-4"></i>
+                    </a>
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="project-details-page">
+        <h1 class="text-4xl font-bold text-white mb-4 uppercase tracking-tighter">Dinely</h1>
+        <p class="placeholder-text">Project details coming soon</p>
+    </div>
+
+    <footer class="w-full bg-black py-8 flex justify-center items-center">
+        <div class="text-center">
+            <p class="font-mono text-zinc-600 text-xs uppercase tracking-[0.2em]">&copy; REHAN JOSE 2026 ALL RIGHTS RESERVED</p>
+        </div>
+    </footer>
+
+    <script>lucide.createIcons();</script>
+</body>
+</html>

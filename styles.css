@@ -1077,8 +1077,16 @@ body {
     transition: transform 0.4s ease;
 }
 
+.project-thumbnail.zoomed {
+    transform: scale(1.17);
+}
+
 .project-card:hover .project-thumbnail {
     transform: scale(1.03);
+}
+
+.project-card:hover .project-thumbnail.zoomed {
+    transform: scale(1.22);
 }
 
 /* Project Info */
@@ -1583,3 +1591,89 @@ body {
     transform: translateY(0);
 }
 
+/* --- COMING SOON MODAL --- */
+.coming-soon-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.4);
+    backdrop-filter: blur(15px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 24px;
+}
+
+.coming-soon-modal.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.cs-modal-content {
+    background: rgba(24, 24, 27, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(25px);
+    padding: 48px 32px;
+    border-radius: 24px;
+    max-width: 500px;
+    width: 100%;
+    text-align: center;
+    transform: translateY(20px) scale(0.95);
+    transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+}
+
+.coming-soon-modal.active .cs-modal-content {
+    transform: translateY(0) scale(1);
+}
+
+.cs-modal-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 16px;
+    letter-spacing: -0.02em;
+    text-transform: uppercase;
+}
+
+.cs-modal-text {
+    font-family: 'Space Mono', monospace;
+    font-size: 13px;
+    line-height: 1.8;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 32px;
+}
+
+.cs-modal-close-btn {
+    font-family: 'Space Mono', monospace;
+    background: #fff;
+    color: #000;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 9999px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cs-modal-close-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+[data-theme="light"] .cs-modal-content {
+    background: rgba(245, 243, 235, 0.8);
+    border: 1px solid rgba(17, 17, 17, 0.1);
+    color: #111;
+}
+
+[data-theme="light"] .cs-modal-title { color: #111; }
+[data-theme="light"] .cs-modal-text { color: rgba(17, 17, 17, 0.6); }
+[data-theme="light"] .cs-modal-close-btn { background: #111; color: #fff; }
