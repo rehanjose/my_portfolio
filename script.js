@@ -633,9 +633,18 @@ function applyGlowColors() {
 }
 
 // --- COMING SOON MODAL ---
-function showComingSoon() {
+function showComingSoon(title, text) {
     const modal = document.getElementById('coming-soon-modal');
-    if (modal) {
+    const modalTitle = document.getElementById('cs-modal-title');
+    const modalText = document.getElementById('cs-modal-text');
+
+    if (modal && modalTitle && modalText && title && text) {
+        modalTitle.innerText = title;
+        modalText.innerText = text;
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    } else if (modal) {
+        // Fallback for no arguments
         modal.classList.add('active');
         document.body.style.overflow = 'hidden';
     }

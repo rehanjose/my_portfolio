@@ -33,10 +33,12 @@
             <i data-lucide="sun" class="theme-icon theme-icon-sun  w-4 h-4"></i>
         </button>
 
-        <nav class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
+        <nav
+            class="bg-zinc-900/30 backdrop-blur-xl border border-white/10 shadow-2xl rounded-full px-6 py-3 w-full max-w-2xl transition-all duration-300">
             <div class="flex items-center justify-between">
                 <div class="flex items-center">
-                    <a href="index.html"><img src="Homepage%20Assets/logo.png" alt="RJ Logo" class="h-8 w-auto object-contain nav-logo"></a>
+                    <a href="index.html"><img src="Homepage%20Assets/logo.png" alt="RJ Logo"
+                            class="h-8 w-auto object-contain nav-logo"></a>
                 </div>
 
                 <div class="hidden md:flex items-center gap-6">
@@ -153,7 +155,7 @@
                     <p class="projects-subtitle">A curated collection of my work across design disciplines</p>
                 </div>
 
-<!-- 
+                <!-- 
                 <div class="category-dropdown-wrapper">
                     <label for="category-select" class="category-label">My Design Spectrum</label>
                     <select id="category-select" class="category-dropdown">
@@ -167,13 +169,16 @@
             <div class="projects-container">
                 <div class="projects-grid">
                     <!-- Project 1 — Dinely -->
-                    <div class="project-card" data-category="ui-ux" data-glow="140, 140, 140" data-glow-override onclick="showComingSoon()">
+                    <div class="project-card" data-category="ui-ux" data-glow="140, 140, 140" data-glow-override
+                        onclick="showComingSoon('Dinely', 'Dinely is currently in the wireframing phase — shaping flows, structure, and overall experience. Full case study coming soon.')">
                         <div class="project-image-wrapper">
-                            <img src="projects/Dinely/dinely%20thumbnail.png" alt="Dinely project thumbnail" class="project-thumbnail zoomed">
+                            <img src="Homepage%20Assets/dinely%20thumbnail.png" alt="Dinely project thumbnail"
+                                class="project-thumbnail zoomed">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Dinely</h3>
-                            <p class="project-description">Helping individuals and groups effortlessly decide where to eat by aligning<br>preferences, dietary needs, and choices.</p>
+                            <p class="project-description">Helping individuals and groups effortlessly decide where to
+                                eat by aligning<br>preferences, dietary needs, and choices.</p>
                             <div class="project-tags">
                                 <span class="tag">Product Design</span>
                                 <span class="tag">UI/UX</span>
@@ -182,14 +187,35 @@
                         </div>
                     </div>
 
-                    <!-- Project 2 — AlexaBot -->
-                    <div class="project-card" data-category="3d-spatial" data-glow="255, 255, 255" onclick="window.location.href='projects/AlexaBot/alexabot.html'">
+                    <!-- Project 2 — STRYDE -->
+                    <div class="project-card" data-category="experience-design" data-glow="255, 255, 255"
+                        onclick="window.location.href='projects/Stryde/stryde.html'">
                         <div class="project-image-wrapper">
-                            <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot — 3D Design" class="project-thumbnail">
+                            <img src="Homepage%20Assets/STRYDE.png" alt="STRYDE project thumbnail"
+                                class="project-thumbnail">
+                        </div>
+                        <div class="project-info">
+                            <h3 class="project-title">STRYDE</h3>
+                            <p class="project-description">Reimagining sports viewing through an immersive, stadium-like
+                                theatre experience.</p>
+                            <div class="project-tags">
+                                <span class="tag">Case Study</span>
+                                <span class="tag">Experience Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project 3 — AlexaBot -->
+                    <div class="project-card mt-12" data-category="3d-spatial" data-glow="255, 255, 255"
+                        onclick="window.location.href='projects/AlexaBot/alexabot.html'">
+                        <div class="project-image-wrapper">
+                            <img src="Homepage%20Assets/ALEXABOT.png" alt="AlexaBot — 3D Design"
+                                class="project-thumbnail">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">AlexaBot</h3>
-                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with personality.</p>
+                            <p class="project-description">Reimagining Alexa as a mobile, customizable companion with
+                                personality.</p>
                             <div class="project-tags">
                                 <span class="tag">3D Modeling</span>
                                 <span class="tag">Product Design</span>
@@ -198,11 +224,12 @@
                         </div>
                     </div>
 
-                    <!-- Project 3 — Beyond Jerseys -->
-                    <div class="project-card mt-12" data-category="editorial" data-glow="255, 255, 255" onclick="window.location.href='projects/BeyondJerseys/beyond-jerseys.html'">
+                    <!-- Project 4 — Beyond Jerseys -->
+                    <div class="project-card mt-12" data-category="editorial" data-glow="255, 255, 255"
+                        onclick="window.location.href='projects/BeyondJerseys/beyond-jerseys.html'">
                         <div class="project-image-wrapper">
-                            <img src="Homepage%20Assets/beyond-jerseys-thumbnail.jpg" alt="Beyond Jerseys project thumbnail"
-                                class="project-thumbnail">
+                            <img src="Homepage%20Assets/beyond-jerseys-thumbnail.jpg"
+                                alt="Beyond Jerseys project thumbnail" class="project-thumbnail">
                         </div>
                         <div class="project-info">
                             <h3 class="project-title">Beyond Jerseys</h3>
@@ -264,12 +291,13 @@
 
     </div>
 
-    <!-- Coming Soon Modal -->
+    <!-- Coming Soon Model -->
     <div id="coming-soon-modal" class="coming-soon-modal" onclick="closeComingSoon()">
         <div class="cs-modal-content" onclick="event.stopPropagation()">
-            <h2 class="cs-modal-title">Dinely</h2>
-            <p class="cs-modal-text">
-                Dinely is currently in the wireframing phase — shaping flows, structure, and overall experience. Full case study coming soon.
+            <h2 class="cs-modal-title" id="cs-modal-title">Dinely</h2>
+            <p class="cs-modal-text" id="cs-modal-text">
+                Dinely is currently in the wireframing phase — shaping flows, structure, and overall experience. Full
+                case study coming soon.
             </p>
             <button class="cs-modal-close-btn" onclick="closeComingSoon()">Got it</button>
         </div>
