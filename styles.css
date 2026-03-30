@@ -44,19 +44,28 @@
 /* BASE STYLES */
 body {
     font-family: 'Space Mono', monospace;
-    /* Backdrop baked into body background so it never shows through low-opacity elements.
-       Two-layer background: semi-transparent overlay + fixed net image underneath. */
-    background-color: var(--bg-color);
-    background-image:
-        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        url('Homepage%20Assets/netbackdrop.png');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
     color: var(--text-primary);
     overflow-x: hidden;
     overflow-y: auto;
+    transition: var(--theme-transition);
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -1;
+    background-color: var(--bg-color);
+    background-image:
+        linear-gradient(var(--bg-overlay), var(--bg-overlay)),
+        url('Homepage%20Assets/netbackdrop.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    pointer-events: none;
     transition: var(--theme-transition);
 }
 

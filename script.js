@@ -527,8 +527,15 @@ if (aboutText && aboutSection && aboutContainer) {
     }
 
     // Add to scroll listener
+    let ticking = false;
     window.addEventListener('scroll', () => {
-        requestAnimationFrame(updateAboutAnimation);
+        if (!ticking) {
+            window.requestAnimationFrame(() => {
+                updateAboutAnimation();
+                ticking = false;
+            });
+            ticking = true;
+        }
     });
 
     // Initial call
