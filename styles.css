@@ -48,8 +48,10 @@ body {
     overflow-x: hidden;
     overflow-y: auto;
     transition: var(--theme-transition);
+    background-color: var(--bg-color); /* Fallback */
 }
 
+/* Fixed background for performance + compatibility */
 body::before {
     content: "";
     position: fixed;
@@ -59,9 +61,9 @@ body::before {
     height: 100vh;
     z-index: -1;
     background-color: var(--bg-color);
-    background-image:
+    background-image: 
         linear-gradient(var(--bg-overlay), var(--bg-overlay)),
-        url('Homepage%20Assets/netbackdrop.jpg');
+        url('Homepage%20Assets/netbackdrop.png');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
