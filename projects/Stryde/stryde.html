@@ -1514,7 +1514,7 @@
      06.2  FLOOR PLAN
 ═══════════════════════════════════ -->
     <section style="padding: 120px 60px 40px;">
-        <div class="label">09.5 — The Layout</div>
+        <div class="label">The Layout</div>
         <h2 class="big-text" style="max-width: 800px; margin-bottom: 4px;">The Floor Plan</h2>
         <p class="body" style="font-size: 13px; color: var(--muted); text-transform: uppercase; margin-bottom: 60px; letter-spacing: 0.1em;">
             Scale: 1:500 / Orientation: North</p>
@@ -1590,6 +1590,7 @@
                 <img src="process/6.png" alt="Process 6">
             </div>
         </div>
+        <p style="font-family: 'DM Mono', monospace; font-size: 11px; letter-spacing: 0.2em; color: var(--muted); text-transform: uppercase; text-align: center; padding: 24px 0 32px;">Drag or scroll to view more</p>
     </div>
 
     <!-- ═══════════════════════════════════
@@ -2022,6 +2023,9 @@
 
         slider.addEventListener('mousedown', (e) => {
             isDown = true;
+            slider.style.scrollSnapType = 'none';
+            slider.style.scrollBehavior = 'auto';
+            slider.style.userSelect = 'none';
             slider.style.cursor = 'grabbing';
             startX = e.pageX - slider.offsetLeft;
             scrollLeft = slider.scrollLeft;
@@ -2029,11 +2033,17 @@
 
         slider.addEventListener('mouseleave', () => {
             isDown = false;
+            slider.style.scrollSnapType = '';
+            slider.style.scrollBehavior = '';
+            slider.style.userSelect = '';
             slider.style.cursor = 'grab';
         });
 
         slider.addEventListener('mouseup', () => {
             isDown = false;
+            slider.style.scrollSnapType = '';
+            slider.style.scrollBehavior = '';
+            slider.style.userSelect = '';
             slider.style.cursor = 'grab';
         });
 
@@ -2043,6 +2053,12 @@
             const x = e.pageX - slider.offsetLeft;
             const walk = (x - startX) * 2;
             slider.scrollLeft = scrollLeft - walk;
+        });
+
+        // Prevent browser from dragging the image file instead of scrolling
+        const processImages = slider.querySelectorAll('img');
+        processImages.forEach(img => {
+            img.addEventListener('dragstart', (e) => e.preventDefault());
         });
 
         // Touch support is native, but mouse drag needs this helper
